@@ -1,5 +1,5 @@
 // TODO: solve some situations like provided len < str.length
-
+import { Options, defaultOptions } from '../types'
 const repeat = (str: string = ' ', times: number = 1) => str.repeat(times)
 
 const pad = (
@@ -24,6 +24,29 @@ const pad = (
 const truncate = (str: string, len: number, chr: string = '...') =>
   str.substring(0, len - chr.length) + chr
 
-export { repeat, pad, truncate }
+const getType = (obj: any) => Object.prototype.toString.call(obj).slice(8, -1)
 
-export default { repeat, pad, truncate }
+const get_lowerCaseType = (obj: any) => getType(obj).toLowerCase()
+
+const mergeOptions = (opts: Options, options: Options = defaultOptions) => {
+  const rtOptions = options
+  for (const k in opts) {
+    if (get_lowerCaseType(opts[k]) === 'object') {
+      rtOptions[k] = mergeOptions(options[k], opts[k])
+    } else {
+      rtOptions[k] = opts[k]
+    }
+  }
+  return rtOptions
+}
+
+export { repeat, pad, truncate, getType, get_lowerCaseType, mergeOptions }
+
+export default {
+  repeat,
+  pad,
+  truncate,
+  getType,
+  get_lowerCaseType,
+  mergeOptions
+}
