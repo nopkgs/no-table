@@ -1,0 +1,15 @@
+{
+  "name": "no-table",
+  "version": "1.0.0",
+  "description": "not only table",
+  "main": "index.ts",
+  "scripts": {},
+  "keywords": [
+    "no",
+    "table",
+    "no-table",
+    "cli-table"
+  ],
+  "author": "",
+  "license": "MIT"
+}
